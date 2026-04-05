@@ -9,16 +9,16 @@ rounded-lg shadow-lg">
 
   <h1 class="text-3xl text-center font-bold">Login</h1>
 
-  <form class="mt-4" method="POST" action="">
+  <form class="mt-4" method="POST" action="{{ route('login.regis') }}">
     @csrf
 
     <input type="email" class="border border-gray-200 rounded-md bg-gray-200 w-full
     text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" placeholder="Email"
-    id="email" name="email">
+    id="email" name="email" value="{{ old('email') }}" required>
 
     <input type="password" class="border border-gray-200 rounded-md bg-gray-200 w-full
     text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" placeholder="Password"
-    id="password" name="password">
+    id="password" name="password" required>
     
     @error('message')        
       <p class="border border-red-500 rounded-md bg-red-100 w-full

@@ -56,9 +56,10 @@
         <a href="{{ route('publi.index') }}" class="font-semibold
           hover:bg-indigo-700 py-3 px-4 rounded-md">hacer publicacion</a>
 
-          <a href="{{ route('login.destroy') }}" class="font-semibold
-          border-2 border-white py-2 px-4 rounded-md hover:bg-white
-          hover:text-indigo-700">Cerrar Sesion</a>
+          <form method="POST" action="{{ route('login.destroy') }}" class="inline-block">
+            @csrf
+            <button type="submit" class="font-semibold border-2 border-white py-2 px-4 rounded-md hover:bg-white hover:text-indigo-700">Cerrar Sesion</button>
+          </form>
         @else
         @if (auth()->user()->role_id==2)
         <li class="mx-8">
@@ -68,18 +69,20 @@
         <a href="{{ route('publi.index') }}" class="font-semibold
           hover:bg-indigo-700 py-3 px-4 rounded-md">hacer publicacion</a>
 
-          <a href="{{ route('login.destroy') }}" class="font-semibold
-          border-2 border-white py-2 px-4 rounded-md hover:bg-white
-          hover:text-indigo-700">Cerrar Sesion</a>
+          <form method="POST" action="{{ route('login.destroy') }}" class="inline-block">
+            @csrf
+            <button type="submit" class="font-semibold border-2 border-white py-2 px-4 rounded-md hover:bg-white hover:text-indigo-700">Cerrar Sesion</button>
+          </form>
         </li>
         @else
         <li class="mx-8">
           <p class="text-xl">Bienvenido <b>{{auth()->user()->name }}</b></p>
         </li>
         <li>
-          <a href="{{ route('login.destroy') }}" class="font-semibold
-          border-2 border-white py-2 px-4 rounded-md hover:bg-white
-          hover:text-indigo-700">Cerrar Sesion</a>
+          <form method="POST" action="{{ route('login.destroy') }}" class="inline-block">
+            @csrf
+            <button type="submit" class="font-semibold border-2 border-white py-2 px-4 rounded-md hover:bg-white hover:text-indigo-700">Cerrar Sesion</button>
+          </form>
         </li>
         @endif
         @endif

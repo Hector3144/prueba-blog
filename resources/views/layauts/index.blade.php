@@ -10,26 +10,35 @@
 @if(auth()->user()->view_id==1)
 
 <label>Buscar por fecha
-<input id="search" type="search">
+<input id="search" type="search" placeholder="YYYY-MM-DD" autocomplete="off">
 </label>
-<u id="busca">
+<section id="busca">
     @include('partial.post')
-</u>
+</section>
 @endif
 @endif
 
 
 <script>
- document.getElementById('search').addEventListener('input', function(event) {
-  fetch('/search?q='+event.target.value)
-  .then(res=>res.text())
-  .then(html=>{
-    document.getElementById('busca').innerHTML = html
-  })
- })
+ const searchInput = document.getElementById('search');
+ const resultContainer = document.getElementById('busca');
+
+ if (searchInput && resultContainer) {
+    let debounce;
+
+    searchInput.addEventListener('input', function (event) {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => {
+        fetch(`/search?q=${encodeURIComponent(event.target.value)}`)
+          .then(res => res.text())
+          .then(html => {
+            resultContainer.innerHTML = html;
+          });
+      }, 250);
+    });
+ }
 </script>
 
 
 @endsection
-
 

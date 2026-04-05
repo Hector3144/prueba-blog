@@ -1,33 +1,40 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Publi;
 use Illuminate\Http\Request;
 
 class PublicacionController extends Controller
 {
-    public function index(){
-        $publis = publi::all();
+    public function index()
+    {
+        $publis = Publi::latest()->get();
+
         return view('layauts.index')->with(compact('publis'));
     }
-public function create(){
 
+    public function create()
+    {
+        return view('publicaciones.publicaciones');
+    }
 
-    return view('publicaciones.publicaciones');
-}
-public function poste(Request $request){
-    $request-> validate([
+    public function poste(Request $request)
+    {
+        $attributes = $request->validate([
             'title' => 'required',
             'desc' => 'required|max:255',
-            'date' => 'required',
-    ]);
+            'date' => 'required|date',
+        ]);
 
-    $publi = new publi;
-    $publi -> title = $request->title;
-    $publi -> desc = $request->desc;
-    $publi -> date = $request->date;
-    $publi -> save ();
+        $publi = new Publi();
+        $publi->title = $attributes['title'];
+        $publi->desc = $attributes['desc'];
+        $publi->date = $attributes['date'];
+        $publi->save();
 
-    return redirect()->route('publi.index')->with('success', 'Publicacion Hecha');
+        return redirect()
+            ->route('publi.index')
+            ->with('success', 'Publicación hecha correctamente.');
     }
 }
