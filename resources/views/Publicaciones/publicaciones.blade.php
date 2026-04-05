@@ -7,7 +7,7 @@ rounded-lg shadow-lg">
 
 <h1 class="text-3xl text-center font-bold">Publicacion</h1>
 
-<form class="mt-4" method="POST" action="">
+<form class="mt-4" method="POST" action="{{ route('publi.poste') }}">
 @csrf  
 @if (session ('success'))
     <h6 class="alert alert-success">{{ session('success')}}</h6>
@@ -20,7 +20,7 @@ rounded-lg shadow-lg">
 
 <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full
     text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" placeholder="Titulo"
-    id="title" name="title">
+    id="title" name="title" value="{{ old('title') }}" required>
 
 @error('desc')        
 
@@ -31,7 +31,7 @@ rounded-lg shadow-lg">
 
     <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full
     text-lg placeholder-gray-900 p-8 my-1 focus:bg-white" placeholder="Descripcion"
-    id="desc" name="desc">
+    id="desc" name="desc" value="{{ old('desc') }}" required>
 
 @error('date')        
 
@@ -42,7 +42,7 @@ rounded-lg shadow-lg">
 
     <input type="date" class="border border-gray-200 rounded-md bg-gray-200 w-full
     text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" placeholder="fecha"
-    id="date" name="date">
+    id="date" name="date" value="{{ old('date') }}" required>
 
     <button type="submit" class="rounded-md bg-indigo-500 w-full text-lg
     text-white font-semibold p-2 my-3 hover:bg-indigo-600">Enviar</button>

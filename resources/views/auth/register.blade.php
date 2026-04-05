@@ -9,25 +9,25 @@ rounded-lg shadow-lg">
 
 <h1 class="text-3xl text-center font-bold">Registro</h1>
 
-<form class="mt-4" method="POST" action="">
+<form class="mt-4" method="POST" action="{{ route('register.regis') }}">
 @csrf  
     @error('name')        
       <p class="border border-red-500 rounded-md bg-red-100 w-full
       text-red-600 p-2 my-2">* {{ $message }}</p>
     @enderror
 
-    <input type="name" class="border border-gray-200 rounded-md bg-gray-200 w-full
+    <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full
     text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" placeholder="Nombre"
-    id="name" name="name">
+    id="name" name="name" value="{{ old('name') }}" required>
 
     @error('age')        
       <p class="border border-red-500 rounded-md bg-red-100 w-full
       text-red-600 p-2 my-2">* {{ $message }}</p>
     @enderror
 
-    <input type="age" class="border border-gray-200 rounded-md bg-gray-200 w-full
+    <input type="number" class="border border-gray-200 rounded-md bg-gray-200 w-full
     text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" placeholder="Edad"
-    id="age" name="age">
+    id="age" name="age" min="13" max="120" value="{{ old('age') }}" required>
 
     @error('email')        
       <p class="border border-red-500 rounded-md bg-red-100 w-full
@@ -36,7 +36,7 @@ rounded-lg shadow-lg">
 
     <input type="email" class="border border-gray-200 rounded-md bg-gray-200 w-full
     text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" placeholder="Email"
-    id="email" name="email">
+    id="email" name="email" value="{{ old('email') }}" required>
 
     @error('password')  
       <p class="border border-red-500 rounded-md bg-red-100 w-full
@@ -45,11 +45,11 @@ rounded-lg shadow-lg">
 
     <input type="password" class="border border-gray-200 rounded-md bg-gray-200 w-full
     text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" placeholder="Contraseña"
-    id="password" name="password">
+    id="password" name="password" required>
 
     <input type="password" class="border border-gray-200 rounded-md bg-gray-200 w-full
     text-lg placeholder-gray-900 p-2 my-2 focus:bg-white" placeholder="Vuelva a escribir la contraseña"
-    id="password_confirmation" name="password_confirmation">
+    id="password_confirmation" name="password_confirmation" required>
     
 
     <button type="submit" class="rounded-md bg-indigo-500 w-full text-lg

@@ -1,6 +1,3 @@
-
-
-
 @foreach ($publis as $publi)
 <br></br>
 <div class=" container border p-4">
@@ -12,3 +9,6 @@
 </div>
 @endforeach
 
+@if($publis->isEmpty())
+<p class="mt-3 text-gray-600">No hay publicaciones para el filtro indicado.</p>
+@endif
